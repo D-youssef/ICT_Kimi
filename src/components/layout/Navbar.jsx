@@ -1,21 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu, X, BarChart2 } from 'lucide-react';
+import { Menu, X, BarChart2, Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import clsx from 'clsx';
-
-const navLinks = [
-  { path: '/', label: 'Home' },
-  { path: '/fvg', label: 'FVG Entry' },
-  { path: '/cisd', label: 'CISD Entry' },
-  { path: '/fibonacci', label: 'Fibonacci' },
-  { path: '/orderblock', label: 'Order Block' },
-  { path: '/patterns', label: 'Candle Patterns' },
-  { path: '/checklist', label: 'Checklist' },
-  { path: '/sessions', label: 'Sessions' },
-];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'ar' : 'en';
+    i18n.changeLanguage(newLang);
+    document.documentElement.dir = newLang === 'ar' ? 'rtl' : 'ltr';
+  };
+
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
+  }, [i18n.language]);
+
+  const navLinks = [
+    { path: '/', label: t('nav.home', 'Home') },
+    { path: '/fvg', label: t('nav.fvg', 'FVG Entry') },
+    { path: '/cisd', label: t('nav.cisd', 'CISD Entry') },
+    { path: '/fibonacci', label: t('nav.fibonacci', 'Fibonacci') },
+    { path: '/orderblock', label: t('nav.orderblock', 'Order Block') },
+    { path: '/patterns', label: t('nav.patterns', 'Candle Patterns') },
+    { path: '/liquidity', label: t('nav.liquidity', 'Liquidity') },
+    { path: '/checklist', label: t('nav.checklist', 'Checklist') },
+    { path: '/sessions', label: t('nav.sessions', 'Sessions') },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 bg-[var(--color-brand-bg)]/80 backdrop-blur-md border-b border-[var(--color-brand-border)]">
@@ -27,14 +40,14 @@ export default function Navbar() {
           </div>
           
           {/* Desktop Nav */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden md:flex flex-1 items-center justify-center">
+            <div className="flex items-baseline space-x-2 space-x-reverse rtl:space-x-reverse">
               {navLinks.map((link) => (
                 <NavLink
                   key={link.path}
                   to={link.path}
                   className={({ isActive }) => clsx(
-                    "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                    "px-3 py-2 rounded-md text-sm font-medium transition-colors mx-1",
                     isActive 
                       ? "bg-[var(--color-brand-card)] text-white border border-[var(--color-brand-border)]"
                       : "text-gray-300 hover:bg-[var(--color-brand-card)] hover:text-white"
@@ -46,8 +59,25 @@ export default function Navbar() {
             </div>
           </div>
 
+          <div className="hidden md:flex items-center">
+            <button 
+              onClick={toggleLanguage}
+              className="flex items-center gap-2 px-3 py-2 bg-black/30 hover:bg-black/50 text-gray-300 rounded-md transition-colors border border-white/5"
+            >
+              <Globe className="w-4 h-4" />
+              <span className="text-sm font-bold">{i18n.language === 'en' ? 'AR' : 'EN'}</span>
+            </button>
+          </div>
+
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-4">
+            <button 
+              onClick={toggleLanguage}
+              className="flex items-center gap-1 text-gray-300 p-2"
+            >
+              <Globe className="w-5 h-5" />
+              <span className="text-sm font-bold">{i18n.language === 'en' ? 'AR' : 'EN'}</span>
+            </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-[var(--color-brand-card)] focus:outline-none"

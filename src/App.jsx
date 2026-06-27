@@ -9,6 +9,7 @@ import OrderBlockPage from './pages/OrderBlockPage';
 import CandlePatterns from './pages/CandlePatterns';
 import Checklist from './pages/Checklist';
 import Sessions from './pages/Sessions';
+import LiquidityPage from './pages/LiquidityPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/patterns" element={<CandlePatterns />} />
             <Route path="/checklist" element={<Checklist />} />
             <Route path="/sessions" element={<Sessions />} />
+            <Route path="/liquidity" element={<LiquidityPage />} />
           </Routes>
         </main>
         <Footer />

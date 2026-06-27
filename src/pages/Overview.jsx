@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Target, TrendingUp, Clock, BookOpen, ArrowRight, ShieldAlert } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const entryModels = [
   { title: 'Fair Value Gap (FVG)', path: '/fvg', color: 'bg-blue-500', text: 'text-blue-500', border: 'border-blue-500/20', hover: 'hover:border-blue-500/50', desc: 'Inefficiencies in price delivery creating a 3-candle imbalance.' },
@@ -15,6 +16,8 @@ const amdCycle = [
 ];
 
 export default function Overview() {
+  const { t } = useTranslation();
+
   return (
     <div className="space-y-12 animate-in fade-in duration-500 pb-12">
       {/* Hero Section */}
@@ -22,14 +25,13 @@ export default function Overview() {
         <div className="absolute top-0 right-0 p-32 bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>
         <div className="relative z-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-semibold mb-6 border border-blue-500/20">
-            <Target className="w-4 h-4" /> Smart Money Concepts
+            <Target className="w-4 h-4" /> {t('overview.badge', 'Smart Money Concepts')}
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
-            Internalize the Algorithm.
+            {t('overview.title', 'Internalize the Algorithm.')}
           </h1>
           <p className="text-gray-400 max-w-3xl text-lg leading-relaxed mb-8">
-            The ICT Trade Journal is your centralized dashboard to master institutional trading concepts. 
-            Review core entry models, validate your setups through a rigorous checklist, and study the anatomy of high-probability trades.
+            {t('overview.desc', 'The ICT Trade Journal is your centralized dashboard to master institutional trading concepts. Review core entry models, validate your setups through a rigorous checklist, and study the anatomy of high-probability trades.')}
           </p>
         </div>
       </section>

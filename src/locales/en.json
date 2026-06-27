@@ -1,0 +1,35 @@
+{
+  "nav": {
+    "home": "Home",
+    "fvg": "FVG Entry",
+    "cisd": "CISD Entry",
+    "fibonacci": "Fibonacci",
+    "orderblock": "Order Block",
+    "patterns": "Candle Patterns",
+    "checklist": "Checklist",
+    "sessions": "Sessions",
+    "liquidity": "Liquidity"
+  },
+  "overview": {
+    "badge": "Smart Money Concepts",
+    "title": "Internalize the Algorithm.",
+    "desc": "The ICT Trade Journal is your centralized dashboard to master institutional trading concepts. Review core entry models, validate your setups through a rigorous checklist, and study the anatomy of high-probability trades."
+  },
+  "common": {
+    "bullish": "Bullish",
+    "bearish": "Bearish",
+    "pro_tip": "Pro Tip",
+    "study_model": "Study Model",
+    "min_rr": "Min R:R",
+    "stop_loss": "Stop Loss",
+    "take_profit": "Take Profit"
+  },
+  "fvg": {
+    "title": "Fair Value Gap (FVG)",
+    "desc": "The FVG is an algorithmic signature of institutional displacement. It occurs when price is delivered so rapidly in one direction that a 3-candle imbalance is created, leaving a void that price tends to return to."
+  },
+  "liquidity": {
+    "title": "Liquidity & Inducement",
+    "desc": "Liquidity is the fuel for the algorithm. Understanding where retail stop losses rest (BSL and SSL) allows you to anticipate where the smart money will draw price to next."
+  }
+}

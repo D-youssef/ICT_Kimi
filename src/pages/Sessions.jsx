@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Globe, Zap, AlertTriangle } from 'lucide-react';
+import { Clock, Globe, Zap, AlertTriangle, CheckCircle } from 'lucide-react';
 import clsx from 'clsx';
 
 const sessions = [
@@ -61,7 +61,7 @@ export default function Sessions() {
     <div className="space-y-12 animate-in fade-in duration-500 pb-12">
       <div className="bg-[var(--color-brand-card)] p-8 rounded-2xl border border-[var(--color-brand-border)]">
         <h1 className="text-3xl font-bold mb-4 text-white flex items-center gap-3">
-          <Globe className="w-8 h-8 text-blue-400" /> Time & Price Theory
+          <Globe className="w-8 h-8 text-blue-400" /> Time &amp; Price Theory
         </h1>
         <p className="text-gray-300">
           In the ICT methodology, Time is more important than Price. The algorithm delivers price based on specific time windows. If you have the right setup at the wrong time, you will likely be stopped out. All times are in EST (New York Local Time).
@@ -90,27 +90,41 @@ export default function Sessions() {
             <span>16:00</span>
           </div>
           
-          <div className="h-8 w-full bg-black/40 rounded-full border border-[var(--color-brand-border)] relative overflow-hidden flex">
-            {/* 18:00 to 18:00 next day = 24 hours */}
-            {/* Asian: 20:00 to 00:00 (4 hrs = 16.6%) */}
+          <div className="h-8 w-full bg-black/40 rounded-full border border-[var(--color-brand-border)] relative overflow-hidden">
+            {/* Asian: 20:00 to 00:00 (4 hrs out of 24 = 16.6%) starting at 2/24=8.3% */}
             <div className="h-full bg-blue-500/20 border-l border-r border-blue-500/50 absolute" style={{ left: '8.3%', width: '16.6%' }}>
               <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-blue-400">ASIAN</span>
             </div>
             
-            {/* London: 02:00 to 05:00 (3 hrs = 12.5%) */}
+            {/* London: 02:00 to 05:00 (3 hrs = 12.5%) starting at 8/24=33.3% */}
             <div className="h-full bg-red-500/20 border-l border-r border-red-500/50 absolute" style={{ left: '33.3%', width: '12.5%' }}>
               <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-red-400">LONDON</span>
             </div>
             
-            {/* NY AM: 08:30 to 11:00 (2.5 hrs = 10.4%) */}
+            {/* NY AM: 08:30 to 11:00 (2.5 hrs = 10.4%) starting at 14.5/24=60.4% */}
             <div className="h-full bg-emerald-500/20 border-l border-r border-emerald-500/50 absolute" style={{ left: '60.4%', width: '10.4%' }}>
               <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-emerald-400">NY AM</span>
             </div>
 
-            {/* NY PM: 13:30 to 16:00 (2.5 hrs = 10.4%) */}
+            {/* NY PM: 13:30 to 16:00 (2.5 hrs = 10.4%) starting at 19.5/24=81.2% */}
             <div className="h-full bg-purple-500/20 border-l border-r border-purple-500/50 absolute" style={{ left: '81.2%', width: '10.4%' }}>
               <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-purple-400">NY PM</span>
             </div>
+          </div>
+
+          {/* Legend */}
+          <div className="flex flex-wrap gap-4 mt-4 pt-2">
+            {[
+              { color: "bg-blue-500", label: "Asian Session" },
+              { color: "bg-red-500", label: "London Kill Zone" },
+              { color: "bg-emerald-500", label: "NY AM Kill Zone" },
+              { color: "bg-purple-500", label: "NY PM Kill Zone" },
+            ].map((s, i) => (
+              <div key={i} className="flex items-center gap-2 text-xs text-gray-400">
+                <div className={clsx("w-3 h-3 rounded-sm", s.color)}></div>
+                {s.label}
+              </div>
+            ))}
           </div>
         </div>
       </div>
